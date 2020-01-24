@@ -33,18 +33,18 @@ module.exports = {
   },
 
   resolve: {
-    modulesDirectories: ['node_modules', './src'],  // import时到哪些地方去寻找模块
-    extensions: ['', '.js', '.jsx'],  // require的时候可以直接使用require('file')，不用require('file.js')
+    modules: ['node_modules', './src'],  // import时到哪些地方去寻找模块
+    extensions: ['.js', '.jsx'],  // require的时候可以直接使用require('file')，不用require('file.js')
     alias: {
       antdcss: 'antd/dist/antd.min.css',  // import时的别名
     },
   },
 
   module: {
-    loaders: [  // 定义各种loader
+    rules: [  // 定义各种rules
       {
         test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel-loader?' + JSON.stringify(babelLoaderConfig)],  // react-hot-loader可以不用刷新页面, 如果用普通的dev-server的话会自动刷新页面
+        loaders: ['react-hot-loader/webpack', 'babel-loader?' + JSON.stringify(babelLoaderConfig)],  // react-hot-loader可以不用刷新页面, 如果用普通的dev-server的话会自动刷新页面
         exclude: /node_modules/,
       }, {
         test: /\.css$/,
