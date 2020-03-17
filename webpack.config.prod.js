@@ -7,7 +7,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const babelLoaderConfig = {
-  presets: ['latest', 'stage-0', 'react'],
+  presets: ["@babel/preset-env", "@babel/preset-react"],
   plugins: [['import', {libraryName: 'antd', style: true}]],
   cacheDirectory: true,
 };
@@ -28,7 +28,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
 
   entry: [
-    'babel-polyfill',
+    'babel-polyfill',  // 可以使用完整的ES6特性, 大概增加100KB
     './src/index.js',
   ],
 

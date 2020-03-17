@@ -1,3 +1,7 @@
+# 安装说明
+antd可能导致安装失败， 如果npm install报类似以下错误：
+npm ERR! Unexpected end of JSON input while parsing near '...:"...
+可尝试在package.json中移除npm后执行，成功后再安装antd
 # React通用后台
 
 目标是快速搭建一个可用的后台界面，可以先看下[DEMO(普通)](http://jiangxy.github.io/react-antd-admin) / [DEMO(TAB模式)](http://jiangxy.github.io/react-antd-admin/tabMode)，用户名/密码：guest/guest。友情提示：这个DEMO还是有点大的，加载可能稍慢，注意网速。。。
@@ -5,7 +9,7 @@
 也可以[点击这里](docs/Screenshot.md)查看截图，包含一些主要特性的演示。
 
 如果对React或Ant Design感兴趣，但又不知如何入手的话，也可以参考下这个项目。
- 
+
 * [这是个啥东西](#需求背景)
 * [Quick Start](#quick-start)
 * [更新记录](CHANGELOG.md)
@@ -95,7 +99,7 @@
 目前对安全&权限都没考虑进去，如果有这方面的要求，只能后端校验了。在请求后端接口时校验用户的身份和权限。
 
 权限问题也很麻烦，感觉不太好做成通用的东西，如果有需求的话，还是定制开发比较好。
- 
+
 ### 兼容性
 
 能力所限，只能保证chrome中正常使用。。。话说在各种内部系统中，要求只能用chrome也挺常见吧。
