@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {UpdateGPA1, UpdateGPA2} from '../components/UpdateComponentDemo';
 
 module.exports = [

@@ -25,6 +25,7 @@ const vendorLibs = ['react', 'react-router',
 ];
 
 module.exports = {
+  mode: 'production',
   devtool: 'cheap-module-source-map',
 
   entry: [

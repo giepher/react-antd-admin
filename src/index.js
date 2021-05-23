@@ -4,8 +4,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {Provider} from 'react-redux';
+import {Router, Route} from 'react-router';
+import {HashRouter} from 'react-router-dom';
 import './utils/index.js';  // 引入各种prototype辅助方法
 import store from 'redux/store.js';  // redux store
 
@@ -29,9 +30,9 @@ const DBTableContainer = (location, cb) => {
 // 我本来想根据menu.js自动生成路由表, 但那样太不灵活了, 还是自己配置好些
 const routes = (
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <HashRouter>
       <Route path="/" component={App}>
-        <IndexRoute component={Welcome}/>
+        <Route component={Welcome}/>
 
         <Route path="index">
           <Route path="option1" tableName="test" getComponent={DBTableContainer}/>
@@ -80,7 +81,7 @@ const routes = (
         <Route path="*" component={Error}/>
 
       </Route>
-    </Router>
+    </HashRouter>
   </Provider>
 );
 

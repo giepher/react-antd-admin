@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const babelLoaderConfig = {
   presets: ["@babel/preset-env", "@babel/preset-react"],
   // presets: ['latest', 'stage-0', 'react'],  // 开启ES6、部分ES7、react特性, preset相当于预置的插件集合
-  plugins: [['import', {libraryName: 'antd', style: true}]],  // antd模块化加载, https://github.com/ant-design/babel-plugin-import
+  plugins: ["@babel/plugin-proposal-class-properties", ['import', {libraryName: 'antd', style: true}]],  // antd模块化加载, https://github.com/ant-design/babel-plugin-import
   cacheDirectory: true,
 };
 
@@ -19,12 +19,13 @@ const lessLoaderVars = {
 };
 
 module.exports = {
+  mode: 'development',
   devtool: 'eval-source-map',
 
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
     'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-    'babel-polyfill',  // 可以使用完整的ES6特性, 大概增加100KB
+    '@babel/polyfill',  // 可以使用完整的ES6特性, 大概增加100KB
     './src/index.js',  // 编译的入口
   ],
 
@@ -49,14 +50,47 @@ module.exports = {
         exclude: /node_modules/,
       }, {
         test: /\.css$/,
-        loader: 'style!css',
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true
+            }
+          }
+        ]
+        // loader: 'style!css',
       }, {
         test: /\.less$/,
-        loader: 'style!css!' + `less?{"sourceMap":true,"modifyVars":${JSON.stringify(lessLoaderVars)}}`,  // 用!去链式调用loader
+        // use: [{}
+        //   'style-loader',
+        //   'css-loader',
+        //   'less-loader'
+        //   , options: { javascriptEnabled: true }
+        // ],
+        use: [
+          {
+            loader: "css-loader",
+            options: {
+              modules: true
+            }
+          },
+          {
+            loader: "less-loader",
+            options: {
+              modules: true,
+              javascriptEnabled: true
+            }
+          }
+        ]
+        // loader: 'style!css!' + `less?{"sourceMap":true,"modifyVars":${JSON.stringify(lessLoaderVars)}}`,  // 用!去链式调用loader
       }, {
         test: /\.(png|jpg|svg)$/,
         loader: 'url?limit=25000',  // 图片小于一定值的话转成base64
       },
+
     ],
   },
 

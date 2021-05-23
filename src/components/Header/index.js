@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {Icon, Menu} from 'antd';
 import Logger from '../../utils/Logger';
 import globalConfig from 'config';
